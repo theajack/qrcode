@@ -1,0 +1,25 @@
+{
+    "name": "qrcode-module",
+    "version": "0.0.3",
+    "description": "qrcodejs 二维码生成",
+    "main": "index.js",
+    "scripts": {},
+    "unpkg": "qrcode-module.min.js",
+    "jsdelivr": "qrcode-module.min.js",
+    "typings": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/theajack/qrcode.git"
+    },
+    "keywords": [
+        "生成二维码",
+        "qrcodejs",
+        "qrcode"
+    ],
+    "author": "theajack",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/theajack/qrcode/issues"
+    },
+    "homepage": "https://github.com/theajack/qrcode"
+}
