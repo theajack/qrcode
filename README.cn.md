@@ -30,31 +30,32 @@
     <a href="https://www.github.com/theajack/tc-qrcode"><img src="https://img.shields.io/librariesio/dependent-repos/npm/tc-qrcode.svg" alt="Dependent"></a>
     <a href="https://github.com/theajack/qrcode/blob/master/test/test-report.txt"><img src="https://img.shields.io/badge/test-passed-44BB44" alt="test"></a>
 </p>
-<h3>🚀 Simple and easy-to-use js library for generating and parsing QR codes</h3>
 
-**[中文](https://github.com/theajack/qrcode/blob/master/README.md) | [Online use](https://www.theajack.com/qrcode) | [Update Log](https://github.com/theajack/qrcode/blob/master/helper/version.md) | [Feedback bug](https://github.com/theajack/qrcode/issues/new) | [Gitee](https://gitee.com/theajack/qrcode/)**
+<h3>🚀 简单好用的生成和解析二维码的js库</h3>
+
+**[英文](https://github.com/theajack/qrcode/blob/master/README.md) | [在线使用](https://www.theajack.com/qrcode) | [更新日志](https://github.com/theajack/qrcode/blob/master/helper/version.md) | [反馈](https://github.com/theajack/qrcode/issues/new) | [Gitee](https://gitee.com/theajack/qrcode/)**
 
 ---
 
-### 1. Features
+### 1. 特性
 
-1. Call a single api to generate and parse the QR code
-2. Support ts
-3. Analyze QR code to support parsing files, base64, url, image
-4. Support screenshots of video and canvas
-5. Analyze the QR code to support binding an input element of type file
-6. Generate QR code to support returning base64, image and rendering to dom element
+1. 调用单个api生成和解析二维码
+2. 支持ts
+3. 解析二维码支持解析文件，base64，url，image
+4. 支持video和canvas的截屏
+5. 解析二维码支持绑定一个type为file的input元素
+6. 生成二维码支持返回 base64,image和渲染至dom元素
 
-### 2. Quick use
+### 2. 快速使用
 
-#### 2.1 npm installation
+#### 2.1 npm 安装
 
 ```
 npm i tc-qrcode
 ```
 
 ```js
-import qrcode from'tc-qrcode';
+import qrcode from 'tc-qrcode';
 
 qrcode.decodeFromUrl('https://cdn.jsdelivr.net/gh/theajack/qrcode/helper/demo-qrcode.png')
     .then(result=>{
@@ -77,127 +78,127 @@ qrcode.decodeFromUrl('https://cdn.jsdelivr.net/gh/theajack/qrcode/helper/demo-qr
 
 ### 3 api
 
-Please refer to [index.d.ts](https://github.com/theajack/qrcode/blob/master/src/index.d.ts)
+请参考 [index.d.ts](https://github.com/theajack/qrcode/blob/master/src/index.d.ts)
 
-Note: 
+注: 
 
-1. The api that parses the QR code will uniformly return a Promise IDecodeResult object
+1. 解析二维码的api都会统一返回一个 Promise IDecodeResult 对象
 
 ```ts
 interface IDecodeResult {
-    result: string; // parse result
-    success: boolean; // Whether it is successful
-    time: number; // Decoding time
-    errorMessage: string; // error message
-    error: string | object | null; // error message
+    result: string; // 解析结果
+    success: boolean; // 是否成功
+    time: number; // 解码时长
+    errorMessage: string; // 错误信息
+    error: string | object | null; // 错误信息
     image: string;
 }
 ```
 
-2. Encoded apis all support input parameters of type IEncodeOption. If the input is a string, the following parameters are all passed in default values. The return value is also wrapped by Promise
+2. 编码的api都支持类型为 IEncodeOption 输入参数，如果传入的是字符串，则以下参数都传入默认值. 返回值也都是经过Promise 包裹的
    
 ```ts
 interface IEncodeOption {
     text: string;
-    width?: number; // default value 256
-    height?: number; // default value 256
-    typeNumber?: number; // default value 4
-    colorDark?: string; // default value'#000000'
-    colorLight?: string; // default value'#ffffff'
-    correctLevel?: 1 | 0 | 3 | 2; // default value 2
+    width?: number; // 默认值 256
+    height?: number; // 默认值 256
+    typeNumber?: number; // 默认值 4
+    colorDark?: string; // 默认值 '#000000'
+    colorLight?: string; // 默认值 '#ffffff'
+    correctLevel?: 1 | 0 | 3 | 2; // 默认值 2
 }
 ```
 
 #### 3.1 decodeFromUrl
 
-Parse the QR code from the url, which can be an online picture address or blob url
+从url中解析二维码，可以是一个在线的图片地址或者blob url
 
 ```ts
 function decodeFromUrl(url: string): Promise<IDecodeResult>;
 ```
 
 ```js
-import {decodeFromUrl} from'tc-qrcode';
+import {decodeFromUrl} from 'tc-qrcode';
 decodeFromUrl('xxx').then(result=>{});
 ```
 
 #### 3.2 decodeFromFile
 
-Parse the QR code from the file object
+从file对象中解析二维码
 
 ```ts
 function decodeFromFile(file: File): Promise<IDecodeResult>;
 ```
 
 ```js
-import {decodeFromFile} from'tc-qrcode';
+import {decodeFromFile} from 'tc-qrcode';
 decodeFromFile(file).then(result=>{});
 ```
 
 #### 3.3 decodeFromBase64
 
-Parse the QR code from the base64 graph
+从base64的图中解析二维码
 
 ```ts
 function decodeFromBase64(base64Str: string): Promise<IDecodeResult>;
 ```
 
 ```js
-import {decodeFromBase64} from'tc-qrcode';
+import {decodeFromBase64} from 'tc-qrcode';
 decodeFromBase64(base64).then(result=>{});
 ```
 
 #### 3.4 decodeFromImage
 
-Parse the QR code from the image object
+从image对象中解析二维码
 
 ```ts
 function decodeFromImage(image: HTMLImageElement): Promise<IDecodeResult>;
 ```
 
 ```js
-import {decodeFromImage} from'tc-qrcode';
+import {decodeFromImage} from 'tc-qrcode';
 decodeFromImage(image).then(result=>{});
 ```
 
 #### 3.5 decodeFromVideo
 
-Take a screenshot from the video object and parse the QR code
+从video对象中截图并解析二维码
 
 ```ts
 function decodeFromVideo(video: HTMLVideoElement): Promise<IDecodeResult>;
 ```
 
 ```js
-import {decodeFromVideo} from'tc-qrcode';
+import {decodeFromVideo} from 'tc-qrcode';
 decodeFromVideo(video).then(result=>{});
 ```
 
 #### 3.6 decodeFromCanvas
 
-Take a screenshot from the canvas object and parse the QR code
+从canvas对象中截图并解析二维码
 
 ```ts
 function decodeFromCanvas(canvas: HTMLCanvasElement): Promise<IDecodeResult>;
 ```
 
 ```js
-import {decodeFromCanvas} from'tc-qrcode';
+import {decodeFromCanvas} from 'tc-qrcode';
 decodeFromCanvas(canvas).then(result=>{});
 ```
 
 #### 3.7 decodeBindInput
 
-Bind an input element whose type is file as the input source, and continuously parse the QR code
+绑定一个type为file的input元素作为输入源，持续的解析二维码
 
-This method does not return an IDecodeResult object, but uses a callback function to receive the return value
+这个方法不会返回 IDecodeResult 对象，而是使用一个回调函数来接收返回值
 
 ```ts
 function decodeBindInput(input: HTMLInputElement, onResult: (result: IDecodeResult) => void): void;
 ```
 
 ```js
-import {decodeBindInput} from'tc-qrcode';
+import {decodeBindInput} from 'tc-qrcode';
 decodeBindInput(input, (result)=>{
 
 });
@@ -205,67 +206,67 @@ decodeBindInput(input, (result)=>{
 
 #### 3.8 encodeAsBase64
 
-Encode the content as a base64 image
+将内容编码为base64的图片
 
 ```ts
 function encodeAsBase64(content: string | IEncodeOption): Promise<string>;
 ```
 
 ```js
-import {encodeAsBase64} from'tc-qrcode';
+import {encodeAsBase64} from 'tc-qrcode';
 encodeAsBase64('xxxx').then(base64=>{});
 
-// or use parameters
+// 或使用参数
 encodeAsBase64({
-    text:'xxx',
-    width: 256, // default value 256
-    height: 256, // default value 256
-    typeNumber: 4; // default value 4
-    colorDark:'#000000'; // default value'#000000'
-    colorLight:'#ffffff'; // default value'#ffffff'
-    correctLevel: 2; // default value 2
+    text: 'xxx',
+    width: 256, // 默认值 256
+    height: 256, // 默认值 256
+    typeNumber: 4; // 默认值 4
+    colorDark: '#000000'; // 默认值 '#000000'
+    colorLight: '#ffffff'; // 默认值 '#ffffff'
+    correctLevel: 2; // 默认值 2
 }).then(base64=>{});
 ```
 
 #### 3.9 encodeAsImage
 
-Generate an image element after encoding the content into base64
+将内容编码为base64之后生成一个image元素
 
 ```ts
 function encodeAsImage(content: string | IEncodeOption): Promise<HTMLImageElement>;
 ```
 
 ```js
-import {encodeAsImage} from'tc-qrcode';
-encodeAsImage('xxxx').then(image=>()); // The parameters are consistent with 3.8
+import {encodeAsImage} from 'tc-qrcode';
+encodeAsImage('xxxx').then(image=>{}); // 参数与3.8一致
 ```
 
 
 #### 3.10 encodeBindDom
 
-Bind a dom element as a container, this container will be inserted after the QR code is generated
+绑定一个dom元素作为容器，生成二维码之后会插入这个容器
 
-This method will return a Qrcode object, through which the QR code can be recreated
+该方法会返回一个 Qrcode 对象，通过这个对象可以重新制作二维码
 
 ```ts
 function encodeBindDom(content: string | IEncodeOption, dom: HTMLElement): IQRCode;
 ```
 
 ```js
-import {encodeBindDom} from'tc-qrcode';
-const Qrcode = encodeBindDom('xxxx', dom); // The parameters are consistent with 3.8
+import {encodeBindDom} from 'tc-qrcode';
+const Qrcode = encodeBindDom('xxxx', dom); // 参数与3.8一致
 
-// Re-make the QR code
+// 重新制作二维码
 Qrcode.makeCode('new content');
 ```
 
 
 #### 3.10 version
 
-Get the version number
+获取版本号
 
 ```js
-import qrcode from'tc-qrcode';
+import qrcode from 'tc-qrcode';
 
 qrcode.version;
 ```

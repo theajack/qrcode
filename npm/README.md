@@ -40,10 +40,9 @@
 
 1. Call a single api to generate and parse the QR code
 2. Support ts
-3. Analyze QR code to support parsing files, base64, url, image
-4. Support screenshots of video and canvas
-5. Analyze the QR code to support binding an input element of type file
-6. Generate QR code to support returning base64, image and rendering to dom element
+3. Analyze QR code to support parsing files, base64, url, image, video and canvas
+4. Analyze the QR code to support binding an input element of type file
+5. Generate QR code to support returning base64, image and rendering to dom element
 
 ### 2. Quick use
 

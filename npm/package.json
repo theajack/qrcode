@@ -1,0 +1,25 @@
+{
+    "name": "tc-qrcode",
+    "version": "1.0.0",
+    "description": "简单好用的生成和解析二维码的js库",
+    "main": "tc-qrcode.min.js",
+    "scripts": {},
+    "unpkg": "tc-qrcode.min.js",
+    "jsdelivr": "tc-qrcode.min.js",
+    "typings": "tc-qrcode.min.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/theajack/qrcode.git"
+    },
+    "keywords": [
+        "生成二维码",
+        "qrcodejs",
+        "qrcode"
+    ],
+    "author": "theajack",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/theajack/qrcode/issues"
+    },
+    "homepage": "https://github.com/theajack/qrcode"
+}
