@@ -48,6 +48,7 @@ module.exports = () => {
             new CopyWebpackPlugin({
                 patterns: [
                     {from: 'src/index.d.ts', to: 'tc-qrcode.min.d.ts'},
+                    {from: 'src/type.d.ts'},
                     {from: 'README.cn.md'},
                     {from: 'README.md'},
                     {from: 'LICENSE'}

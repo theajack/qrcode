@@ -44,10 +44,11 @@
 4. Analyze QR code to support parsing files, base64, url, image
 5. Support screenshots of video and canvas
 6. Analyze the QR code to support binding an input element of type file
-7. Generate QR code to support returning base64, image and rendering to dom element
+7. Generate QR code to support returning base64 and image
+
+Note: The codec functions of this library are respectively encapsulated from [aralejs/qrcode](https://github.com/aralejs/qrcode/) and [cozmo/jsQR](https://github.com/cozmo/jsQR)
 
 ### 2. Quick use
-
 #### 2.1 npm installation
 
 ```
@@ -82,20 +83,8 @@ Please refer to [index.d.ts](https://github.com/theajack/qrcode/blob/master/src/
 
 Note: 
 
-1. The api that parses the QR code will uniformly return a Promise IDecodeResult object
 
-```ts
-interface IDecodeResult {
-    result: string; // parse result
-    success: boolean; // Whether it is successful
-    time: number; // Decoding time
-    errorMessage: string; // error message
-    error: string | object | null; // error message
-    image: string;
-}
-```
-
-2. Encoded apis all support input parameters of type IEncodeOption. If the input is a string, the following parameters are all passed in default values. The return value is also wrapped by Promise
+The encoded apis all support input parameters of type IEncodeOption. If the input is a string, the following parameters are all passed in the default value. The return value is also wrapped by Promise
    
 ```ts
 interface IEncodeOption {
@@ -114,7 +103,7 @@ interface IEncodeOption {
 Parse the QR code from the url, which can be an online picture address or blob url
 
 ```ts
-function decodeFromUrl(url: string): Promise<IDecodeResult>;
+function decodeFromUrl(url: string): Promise<string>;
 ```
 
 ```js
@@ -127,7 +116,7 @@ decodeFromUrl('xxx').then(result=>{});
 Parse the QR code from the file object
 
 ```ts
-function decodeFromFile(file: File): Promise<IDecodeResult>;
+function decodeFromFile(file: File): Promise<string>;
 ```
 
 ```js
@@ -140,7 +129,7 @@ decodeFromFile(file).then(result=>{});
 Parse the QR code from the base64 graph
 
 ```ts
-function decodeFromBase64(base64Str: string): Promise<IDecodeResult>;
+function decodeFromBase64(base64Str: string): Promise<string>;
 ```
 
 ```js
@@ -153,7 +142,7 @@ decodeFromBase64(base64).then(result=>{});
 Parse the QR code from the image object
 
 ```ts
-function decodeFromImage(image: HTMLImageElement): Promise<IDecodeResult>;
+function decodeFromImage(image: HTMLImageElement): Promise<string>;
 ```
 
 ```js
@@ -166,7 +155,7 @@ decodeFromImage(image).then(result=>{});
 Take a screenshot from the video object and parse the QR code
 
 ```ts
-function decodeFromVideo(video: HTMLVideoElement): Promise<IDecodeResult>;
+function decodeFromVideo(video: HTMLVideoElement): Promise<string>;
 ```
 
 ```js
@@ -179,7 +168,7 @@ decodeFromVideo(video).then(result=>{});
 Take a screenshot from the canvas object and parse the QR code
 
 ```ts
-function decodeFromCanvas(canvas: HTMLCanvasElement): Promise<IDecodeResult>;
+function decodeFromCanvas(canvas: HTMLCanvasElement): Promise<string>;
 ```
 
 ```js
@@ -191,10 +180,10 @@ decodeFromCanvas(canvas).then(result=>{});
 
 Bind an input element whose type is file as the input source, and continuously parse the QR code
 
-This method does not return an IDecodeResult object, but uses a callback function to receive the return value
+This method does not return a string object, but uses a callback function to receive the return value
 
 ```ts
-function decodeBindInput(input: HTMLInputElement, onResult: (result: IDecodeResult) => void): void;
+function decodeBindInput(input: HTMLInputElement, onResult: (result: string) => void): void;
 ```
 
 ```js
@@ -209,15 +198,15 @@ decodeBindInput(input, (result)=>{
 Encode the content as a base64 image
 
 ```ts
-function encodeAsBase64(content: string | IEncodeOption): Promise<string>;
+function encodeAsBase64(content: string | IEncodeOption): string;
 ```
 
 ```js
 import {encodeAsBase64} from'tc-qrcode';
-encodeAsBase64('xxxx').then(base64=>{});
+const base64 = encodeAsBase64('xxxx');
 
 // or use parameters
-encodeAsBase64({
+const base64 = encodeAsBase64({
     text:'xxx',
     width: 256, // default value 256
     height: 256, // default value 256
@@ -225,7 +214,7 @@ encodeAsBase64({
     colorDark:'#000000'; // default value'#000000'
     colorLight:'#ffffff'; // default value'#ffffff'
     correctLevel: 2; // default value 2
-}).then(base64=>{});
+});
 ```
 
 #### 3.9 encodeAsImage
@@ -233,33 +222,13 @@ encodeAsBase64({
 Generate an image element after encoding the content into base64
 
 ```ts
-function encodeAsImage(content: string | IEncodeOption): Promise<HTMLImageElement>;
+function encodeAsImage(content: string | IEncodeOption): HTMLImageElement;
 ```
 
 ```js
 import {encodeAsImage} from'tc-qrcode';
-encodeAsImage('xxxx').then(image=>()); // The parameters are consistent with 3.8
+const image = encodeAsImage('xxxx'); // The parameters are consistent with 3.8
 ```
-
-
-#### 3.10 encodeBindDom
-
-Bind a dom element as a container, this container will be inserted after the QR code is generated
-
-This method will return a Qrcode object, through which the QR code can be recreated
-
-```ts
-function encodeBindDom(content: string | IEncodeOption, dom: HTMLElement): IQRCode;
-```
-
-```js
-import {encodeBindDom} from'tc-qrcode';
-const Qrcode = encodeBindDom('xxxx', dom); // The parameters are consistent with 3.8
-
-// Re-make the QR code
-Qrcode.makeCode('new content');
-```
-
 
 #### 3.10 version
 
@@ -269,4 +238,24 @@ Get the version number
 import qrcode from'tc-qrcode';
 
 qrcode.version;
+```
+
+#### 3.11 Encoder
+
+Expose the coding library [aralejs/qrcode](https://github.com/aralejs/qrcode/)
+
+```js
+import qrcode from'tc-qrcode';
+
+qrcode.Encoder;
+```
+
+#### 3.12 Dncoder
+
+Expose the decoding library [cozmo/jsQR](https://github.com/cozmo/jsQR)
+
+```js
+import qrcode from'tc-qrcode';
+
+qrcode.Decoder;
 ```

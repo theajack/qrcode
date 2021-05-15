@@ -4,3 +4,5 @@
 /cdn
 /dist
 **/*.html
+**/*.min.js
+src/lib/decode/index.js

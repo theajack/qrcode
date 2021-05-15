@@ -1,47 +1,61 @@
 
 
-import {createDecoder} from './lib/reqrcode';
-import {IEncodeOption, IQRCode, IDecodeResult} from './index.d';
-import QRCode from './lib/qrcode';
+import Encoder from './lib/encode';
+import Decoder from './lib/decode';
 import version from './version';
+import {IEncodeOption} from './type';
 
-export function decodeBindInput (input: HTMLInputElement, onResult: (result: IDecodeResult)=>void) {
-    input.onchange = function () {
-        const files = input.files;
-        if (!files) {return;}
-        for (let i = 0; i < files.length; i++) {
-            decodeFromFile(files[0]).then(result => {
-                onResult(result);
-            });
-        }
-    };
+function formatEncodeOption (content: string | IEncodeOption): IEncodeOption {
+    if (typeof content === 'string') {
+        return {text: content} as IEncodeOption;
+    }
+    return content;
 }
 
-export function decodeFromFile (file: File | Blob) {
-    const URL = window.URL || window.webkitURL;
-    const url = URL.createObjectURL(file);
-    return decodeFromUrl(url);
+export function encodeAsBase64 (content: string | IEncodeOption) {
+    const encode = new Encoder(formatEncodeOption(content)) as HTMLCanvasElement;
+    return encode.toDataURL();
 }
 
-export function decodeFromImage (image: HTMLImageElement) {
-    return decodeFromUrl(image.src);
+export function encodeAsImage (content: string | IEncodeOption) {
+    const image = document.createElement('img');
+    image.src = encodeAsBase64(content);
+    return image;
 }
 
-export function decodeFromUrl (url: string): Promise<IDecodeResult> {
-    return new Promise(resolve => {
-        const qrcode = createDecoder();
-        qrcode.decode(url);
-        qrcode.callback = function (result: IDecodeResult) {
-            result.image = url;
-            resolve(result);
+// decode
+export function decodeFromUrl (url: string): Promise<string> {
+    return new Promise((resolve) => {
+        const image = document.createElement('img');
+        image.crossOrigin = 'Anonymous';
+        image.onload = function () {
+            const imageData = imageToUint8Array(image);
+            resolve(Decoder(imageData, image.width, image.height)?.data || '');
         };
+        image.src = url;
     });
 }
 
-export function decodeFromBase64 (base64: string) {
+export function decodeFromBase64 (base64: string): Promise<string> {
     return decodeFromUrl(base64);
 }
 
+export function decodeFromFile (file: File | Blob): Promise<string> {
+    return new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const dataURL = e.target?.result;
+            if (dataURL) {
+                decodeFromBase64(dataURL as string).then(result => {
+                    resolve(result);
+                });
+            } else {
+                resolve('');
+            }
+        };
+        reader.readAsDataURL(file);
+    });
+}
 export function decodeFromVideo (video: HTMLVideoElement) {
     const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
@@ -56,36 +70,44 @@ export function decodeFromCanvas (canvas: HTMLCanvasElement) {
     return decodeFromBase64(base64);
 }
 
-export function encodeAsImage (content: string | IEncodeOption): Promise<HTMLImageElement> {
-    return new Promise(resolve => {
-        const div = document.createElement('div');
-        encodeBindDom(content, div);
-        const image = div.children[1] as HTMLImageElement;
-        image.onload = function () {
-            resolve(image);
-        };
-    });
+export function decodeBindInput (input: HTMLInputElement, onResult: (result: string)=>void) {
+    input.onchange = function () {
+        const files = input.files;
+        if (!files) {return;}
+        for (let i = 0; i < files.length; i++) {
+            decodeFromFile(files[0]).then(result => {
+                onResult(result);
+            });
+        }
+    };
 }
 
-export async function encodeAsBase64 (content: string | IEncodeOption) {
-    return (await encodeAsImage(content)).src;
+export function decodeFromImage (image: HTMLImageElement) {
+    return decodeFromUrl(image.src);
 }
 
-export function encodeBindDom (content: string | IEncodeOption, dom: HTMLElement): IQRCode {
-    return new QRCode(dom, content);
+function imageToUint8Array (image: HTMLImageElement) {
+    const canvas = document.createElement('canvas');
+    canvas.width = image.width;
+    canvas.height = image.height;
+    const context = canvas.getContext('2d') as CanvasRenderingContext2D;
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    return context.getImageData(0, 0, canvas.width, canvas.height).data;
 }
 
 export default {
-    decodeBindInput,
-    decodeFromFile,
-    decodeFromImage,
-    decodeFromBase64,
-    decodeFromCanvas,
-    decodeFromUrl,
-    decodeFromVideo,
-
     encodeAsBase64,
     encodeAsImage,
-    encodeBindDom,
+
+    decodeFromUrl,
+    decodeFromBase64,
+    decodeBindInput,
+    decodeFromVideo,
+    decodeFromCanvas,
+    decodeFromFile,
+    decodeFromImage,
     version,
+
+    Encoder,
+    Decoder,
 };

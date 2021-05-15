@@ -45,7 +45,9 @@
 4. 解析二维码支持解析文件，base64，url，image
 5. 支持video和canvas的截屏
 6. 解析二维码支持绑定一个type为file的input元素
-7. 生成二维码支持返回 base64,image和渲染至dom元素
+7. 生成二维码支持返回 base64 and image
+
+注：该库编解码功能分别封装自 [aralejs/qrcode](https://github.com/aralejs/qrcode/) 和 [cozmo/jsQR](https://github.com/cozmo/jsQR)
 
 ### 2. 快速使用
 
@@ -83,20 +85,8 @@ qrcode.decodeFromUrl('https://cdn.jsdelivr.net/gh/theajack/qrcode/helper/demo-qr
 
 注: 
 
-1. 解析二维码的api都会统一返回一个 Promise IDecodeResult 对象
 
-```ts
-interface IDecodeResult {
-    result: string; // 解析结果
-    success: boolean; // 是否成功
-    time: number; // 解码时长
-    errorMessage: string; // 错误信息
-    error: string | object | null; // 错误信息
-    image: string;
-}
-```
-
-2. 编码的api都支持类型为 IEncodeOption 输入参数，如果传入的是字符串，则以下参数都传入默认值. 返回值也都是经过Promise 包裹的
+编码的api都支持类型为 IEncodeOption 输入参数，如果传入的是字符串，则以下参数都传入默认值. 返回值也都是经过Promise 包裹的
    
 ```ts
 interface IEncodeOption {
@@ -115,7 +105,7 @@ interface IEncodeOption {
 从url中解析二维码，可以是一个在线的图片地址或者blob url
 
 ```ts
-function decodeFromUrl(url: string): Promise<IDecodeResult>;
+function decodeFromUrl(url: string): Promise<string>;
 ```
 
 ```js
@@ -128,7 +118,7 @@ decodeFromUrl('xxx').then(result=>{});
 从file对象中解析二维码
 
 ```ts
-function decodeFromFile(file: File): Promise<IDecodeResult>;
+function decodeFromFile(file: File): Promise<string>;
 ```
 
 ```js
@@ -141,7 +131,7 @@ decodeFromFile(file).then(result=>{});
 从base64的图中解析二维码
 
 ```ts
-function decodeFromBase64(base64Str: string): Promise<IDecodeResult>;
+function decodeFromBase64(base64Str: string): Promise<string>;
 ```
 
 ```js
@@ -154,7 +144,7 @@ decodeFromBase64(base64).then(result=>{});
 从image对象中解析二维码
 
 ```ts
-function decodeFromImage(image: HTMLImageElement): Promise<IDecodeResult>;
+function decodeFromImage(image: HTMLImageElement): Promise<string>;
 ```
 
 ```js
@@ -167,7 +157,7 @@ decodeFromImage(image).then(result=>{});
 从video对象中截图并解析二维码
 
 ```ts
-function decodeFromVideo(video: HTMLVideoElement): Promise<IDecodeResult>;
+function decodeFromVideo(video: HTMLVideoElement): Promise<string>;
 ```
 
 ```js
@@ -180,7 +170,7 @@ decodeFromVideo(video).then(result=>{});
 从canvas对象中截图并解析二维码
 
 ```ts
-function decodeFromCanvas(canvas: HTMLCanvasElement): Promise<IDecodeResult>;
+function decodeFromCanvas(canvas: HTMLCanvasElement): Promise<string>;
 ```
 
 ```js
@@ -192,10 +182,10 @@ decodeFromCanvas(canvas).then(result=>{});
 
 绑定一个type为file的input元素作为输入源，持续的解析二维码
 
-这个方法不会返回 IDecodeResult 对象，而是使用一个回调函数来接收返回值
+这个方法不会返回 string 对象，而是使用一个回调函数来接收返回值
 
 ```ts
-function decodeBindInput(input: HTMLInputElement, onResult: (result: IDecodeResult) => void): void;
+function decodeBindInput(input: HTMLInputElement, onResult: (result: string) => void): void;
 ```
 
 ```js
@@ -210,15 +200,15 @@ decodeBindInput(input, (result)=>{
 将内容编码为base64的图片
 
 ```ts
-function encodeAsBase64(content: string | IEncodeOption): Promise<string>;
+function encodeAsBase64(content: string | IEncodeOption): string;
 ```
 
 ```js
 import {encodeAsBase64} from 'tc-qrcode';
-encodeAsBase64('xxxx').then(base64=>{});
+const base64 = encodeAsBase64('xxxx');
 
 // 或使用参数
-encodeAsBase64({
+const base64 = encodeAsBase64({
     text: 'xxx',
     width: 256, // 默认值 256
     height: 256, // 默认值 256
@@ -226,7 +216,7 @@ encodeAsBase64({
     colorDark: '#000000'; // 默认值 '#000000'
     colorLight: '#ffffff'; // 默认值 '#ffffff'
     correctLevel: 2; // 默认值 2
-}).then(base64=>{});
+});
 ```
 
 #### 3.9 encodeAsImage
@@ -234,33 +224,13 @@ encodeAsBase64({
 将内容编码为base64之后生成一个image元素
 
 ```ts
-function encodeAsImage(content: string | IEncodeOption): Promise<HTMLImageElement>;
+function encodeAsImage(content: string | IEncodeOption): HTMLImageElement;
 ```
 
 ```js
 import {encodeAsImage} from 'tc-qrcode';
-encodeAsImage('xxxx').then(image=>{}); // 参数与3.8一致
+const image = encodeAsImage('xxxx'); // 参数与3.8一致
 ```
-
-
-#### 3.10 encodeBindDom
-
-绑定一个dom元素作为容器，生成二维码之后会插入这个容器
-
-该方法会返回一个 Qrcode 对象，通过这个对象可以重新制作二维码
-
-```ts
-function encodeBindDom(content: string | IEncodeOption, dom: HTMLElement): IQRCode;
-```
-
-```js
-import {encodeBindDom} from 'tc-qrcode';
-const Qrcode = encodeBindDom('xxxx', dom); // 参数与3.8一致
-
-// 重新制作二维码
-Qrcode.makeCode('new content');
-```
-
 
 #### 3.10 version
 
@@ -270,4 +240,24 @@ Qrcode.makeCode('new content');
 import qrcode from 'tc-qrcode';
 
 qrcode.version;
+```
+
+#### 3.11 Encoder
+
+暴露出编码使用库 [aralejs/qrcode](https://github.com/aralejs/qrcode/)
+
+```js
+import qrcode from 'tc-qrcode';
+
+qrcode.Encoder;
+```
+
+#### 3.12 Dncoder
+
+暴露出解码使用库 [cozmo/jsQR](https://github.com/cozmo/jsQR)
+
+```js
+import qrcode from 'tc-qrcode';
+
+qrcode.Decoder;
 ```

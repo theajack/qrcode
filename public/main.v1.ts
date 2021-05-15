@@ -1,5 +1,6 @@
 // import event from '../npm';
-import qrcode from '../src';
+import qrcode from './v1';
+import {IQRCode} from './v1/index.d';
 import './index.css';
 
 function toast (el: HTMLElement, text: string) {
@@ -34,6 +35,22 @@ function commonInit () {
     });
 }
 
+function encodeBindDomInit () {
+    let QRcode: IQRCode;
+    const id = 'encodeBindDom';
+    getEleById(id).onclick = () => {
+        const value = getValue(id);
+        if (QRcode) {
+            QRcode.makeCode(value);
+            return;
+        } else {
+            QRcode = qrcode.encodeBindDom(
+                value,
+                getDisplayEle(id)
+            );
+        }
+    };
+}
 function encodeAsBase64Init () {
     const id = 'encodeAsBase64';
     const display = getDisplayEle(id);
@@ -48,7 +65,7 @@ function encodeAsImageInit () {
     const display = getDisplayEle(id);
     getEleById(id).onclick = async () => {
         const value = getValue(id);
-        const image = qrcode.encodeAsImage(value);
+        const image = await qrcode.encodeAsImage(value);
         display.innerHTML = '';
         display.appendChild(image);
     };
@@ -57,7 +74,7 @@ function decodeBindInputInit () {
     const id = 'decodeBindInput';
     const display = getDisplayEle(id);
     qrcode.decodeBindInput(getEleById(id), (result) => {
-        display.innerText = result;
+        display.innerText = JSON.stringify(result);
     });
 }
 function decodeFromUrlInit () {
@@ -66,7 +83,7 @@ function decodeFromUrlInit () {
     getEleById(id).onclick = async () => {
         const value = getValue(id);
         const result = await qrcode.decodeFromUrl(value);
-        display.innerText = result;
+        display.innerText = JSON.stringify(result);
     };
 }
 
@@ -81,9 +98,9 @@ function main () {
     window.qrcode = qrcode;
     initHtml();
     commonInit();
-    // encodeBindDomInit();
-    encodeAsImageInit();
+    encodeBindDomInit();
     encodeAsBase64Init();
+    encodeAsImageInit();
 
     decodeBindInputInit();
     decodeFromUrlInit();
@@ -149,25 +166,25 @@ function initHtml () {
     </div>
     <div class='block'>
         <div class='title'>
-            生成Image (encodeAsImage)
+            绑定DOM生成二维码实例 (encodeBindDom)
             <a class='link' href="https://github.com/theajack/qrcode" target="_blank">文档</a>
         </div>
-        <div class='code'>const image = qrcode.encodeAsImage('xxxx');</div>
+        <div class='code'>qrcode.encodeBindDom('xxxx', dom);</div>
         <div class='input-group'>
-            <input type="text" id='encodeAsImageInput' placeholder="请输入要生成的内容">
-            <button id='encodeAsImage'>生成二维码</button>
+            <input type="text" id='encodeBindDomInput' placeholder="请输入要生成的内容">
+            <button id='encodeBindDom'>生成二维码</button>
         </div>
-        <div id='encodeAsImageDisplay' class='display'></div>
+        <div id='encodeBindDomDisplay' class='display'></div>
     </div>
     <div class='block'>
         <div class='title'>
             生成base64 (encodeAsBase64)
             <a class='link' href="https://github.com/theajack/qrcode" target="_blank">文档</a>
         </div>
-        <div class='code'>const base64 = qrcode.encodeAsBase64('xxxx');</div>
+        <div class='code'>qrcode.encodeAsBase64('xxxx').then(base64=>{});</div>
         <div class='input-group'>
             <input type="text" id='encodeAsBase64Input' placeholder="请输入要生成的内容">
-            <button id='encodeAsBase64'>生成base64</button>
+            <button id='encodeAsBase64'>生成二维码</button>
         </div>
         <div class='input-group'>
             <button class='copy-result'>复制</button>
@@ -175,6 +192,18 @@ function initHtml () {
             <span class='tip'></span>
         </div>
         <div id='encodeAsBase64Display' class='display flat'></div>
+    </div>
+    <div class='block'>
+        <div class='title'>
+            生成Image (encodeAsImage)
+            <a class='link' href="https://github.com/theajack/qrcode" target="_blank">文档</a>
+        </div>
+        <div class='code'>qrcode.encodeAsImage('xxxx').then(image=>{});</div>
+        <div class='input-group'>
+            <input type="text" id='encodeAsImageInput' placeholder="请输入要生成的内容">
+            <button id='encodeAsImage'>生成二维码</button>
+        </div>
+        <div id='encodeAsImageDisplay' class='display'></div>
     </div>
 
     <div class='block'>
