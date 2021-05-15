@@ -1,11 +1,11 @@
-# [tc-qrcode](https://www.github.com/theajack/tc-qrcode)
+# [tc-qrcode](https://www.github.com/theajack/qrcode)
 
 <p>
     <a href="https://www.github.com/theajack/qrcode/stargazers" target="_black">
-        <img src="https://img.shields.io/github/stars/theajack/tc-qrcode?logo=github" alt="stars" />
+        <img src="https://img.shields.io/github/stars/theajack/qrcode?logo=github" alt="stars" />
     </a>
     <a href="https://www.github.com/theajack/qrcode/network/members" target="_black">
-        <img src="https://img.shields.io/github/forks/theajack/tc-qrcode?logo=github" alt="forks" />
+        <img src="https://img.shields.io/github/forks/theajack/qrcode?logo=github" alt="forks" />
     </a>
     <a href="https://www.npmjs.com/package/tc-qrcode" target="_black">
         <img src="https://img.shields.io/npm/v/tc-qrcode?logo=npm" alt="version" />
@@ -16,18 +16,18 @@
     <a href="https://www.jsdelivr.com/package/npm/tc-qrcode" target="_black">
         <img src="https://data.jsdelivr.com/v1/package/npm/tc-qrcode/badge" alt="jsdelivr" />
     </a>
-    <a href="https://github.com/theajack/qrcode/issues"><img src="https://img.shields.io/github/issues-closed/theajack/tc-qrcode.svg" alt="issue"></a>
+    <a href="https://github.com/theajack/qrcode/issues"><img src="https://img.shields.io/github/issues-closed/theajack/qrcode.svg" alt="issue"></a>
 </p>
 <p>
     <a href="https://github.com/theajack" target="_black">
         <img src="https://img.shields.io/badge/Author-%20theajack%20-7289da.svg?&logo=github" alt="author" />
     </a>
     <a href="https://www.github.com/theajack/qrcode/blob/master/LICENSE" target="_black">
-        <img src="https://img.shields.io/github/license/theajack/tc-qrcode?color=%232DCE89&logo=github" alt="license" />
+        <img src="https://img.shields.io/github/license/theajack/qrcode?color=%232DCE89&logo=github" alt="license" />
     </a>
     <a href="https://cdn.jsdelivr.net/npm/tc-qrcode/tc-qrcode.min.js"><img src="https://img.shields.io/bundlephobia/minzip/tc-qrcode.svg" alt="Size"></a>
-    <a href="https://github.com/theajack/qrcode/search?l=javascript"><img src="https://img.shields.io/github/languages/top/theajack/tc-qrcode.svg" alt="TopLang"></a>
-    <a href="https://www.github.com/theajack/tc-qrcode"><img src="https://img.shields.io/librariesio/dependent-repos/npm/tc-qrcode.svg" alt="Dependent"></a>
+    <a href="https://github.com/theajack/qrcode/search?l=javascript"><img src="https://img.shields.io/github/languages/top/theajack/qrcode.svg" alt="TopLang"></a>
+    <a href="https://www.github.com/theajack/qrcode"><img src="https://img.shields.io/librariesio/dependent-repos/npm/tc-qrcode.svg" alt="Dependent"></a>
     <a href="https://github.com/theajack/qrcode/blob/master/test/test-report.txt"><img src="https://img.shields.io/badge/test-passed-44BB44" alt="test"></a>
 </p>
 
@@ -40,10 +40,12 @@
 ### 1. 特性
 
 1. 调用单个api生成和解析二维码
-2. 支持ts
-3. 解析二维码支持解析文件，base64，url，image，video和canvas
-4. 解析二维码支持绑定一个type为file的input元素
-5. 生成二维码支持返回 base64,image和渲染至dom元素
+2. 使用Promise api， 支持async/await
+3. 使用 typescript 开发
+4. 解析二维码支持解析文件，base64，url，image
+5. 支持video和canvas的截屏
+6. 解析二维码支持绑定一个type为file的input元素
+7. 生成二维码支持返回 base64,image和渲染至dom元素
 
 ### 2. 快速使用
 

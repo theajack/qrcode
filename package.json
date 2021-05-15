@@ -1,6 +1,6 @@
 {
     "name": "tc-qrcode",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "简单好用的生成和解析二维码的js库",
     "scripts": {
         "dev": "webpack-dev-server --open --config webpack-config/dev.js",

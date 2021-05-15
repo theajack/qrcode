@@ -1,11 +1,11 @@
-# [tc-qrcode](https://www.github.com/theajack/tc-qrcode)
+# [tc-qrcode](https://www.github.com/theajack/qrcode)
 
 <p>
     <a href="https://www.github.com/theajack/qrcode/stargazers" target="_black">
-        <img src="https://img.shields.io/github/stars/theajack/tc-qrcode?logo=github" alt="stars" />
+        <img src="https://img.shields.io/github/stars/theajack/qrcode?logo=github" alt="stars" />
     </a>
     <a href="https://www.github.com/theajack/qrcode/network/members" target="_black">
-        <img src="https://img.shields.io/github/forks/theajack/tc-qrcode?logo=github" alt="forks" />
+        <img src="https://img.shields.io/github/forks/theajack/qrcode?logo=github" alt="forks" />
     </a>
     <a href="https://www.npmjs.com/package/tc-qrcode" target="_black">
         <img src="https://img.shields.io/npm/v/tc-qrcode?logo=npm" alt="version" />
@@ -16,18 +16,18 @@
     <a href="https://www.jsdelivr.com/package/npm/tc-qrcode" target="_black">
         <img src="https://data.jsdelivr.com/v1/package/npm/tc-qrcode/badge" alt="jsdelivr" />
     </a>
-    <a href="https://github.com/theajack/qrcode/issues"><img src="https://img.shields.io/github/issues-closed/theajack/tc-qrcode.svg" alt="issue"></a>
+    <a href="https://github.com/theajack/qrcode/issues"><img src="https://img.shields.io/github/issues-closed/theajack/qrcode.svg" alt="issue"></a>
 </p>
 <p>
     <a href="https://github.com/theajack" target="_black">
         <img src="https://img.shields.io/badge/Author-%20theajack%20-7289da.svg?&logo=github" alt="author" />
     </a>
     <a href="https://www.github.com/theajack/qrcode/blob/master/LICENSE" target="_black">
-        <img src="https://img.shields.io/github/license/theajack/tc-qrcode?color=%232DCE89&logo=github" alt="license" />
+        <img src="https://img.shields.io/github/license/theajack/qrcode?color=%232DCE89&logo=github" alt="license" />
     </a>
     <a href="https://cdn.jsdelivr.net/npm/tc-qrcode/tc-qrcode.min.js"><img src="https://img.shields.io/bundlephobia/minzip/tc-qrcode.svg" alt="Size"></a>
-    <a href="https://github.com/theajack/qrcode/search?l=javascript"><img src="https://img.shields.io/github/languages/top/theajack/tc-qrcode.svg" alt="TopLang"></a>
-    <a href="https://www.github.com/theajack/tc-qrcode"><img src="https://img.shields.io/librariesio/dependent-repos/npm/tc-qrcode.svg" alt="Dependent"></a>
+    <a href="https://github.com/theajack/qrcode/search?l=javascript"><img src="https://img.shields.io/github/languages/top/theajack/qrcode.svg" alt="TopLang"></a>
+    <a href="https://www.github.com/theajack/qrcode"><img src="https://img.shields.io/librariesio/dependent-repos/npm/tc-qrcode.svg" alt="Dependent"></a>
     <a href="https://github.com/theajack/qrcode/blob/master/test/test-report.txt"><img src="https://img.shields.io/badge/test-passed-44BB44" alt="test"></a>
 </p>
 <h3>🚀 Simple and easy-to-use js library for generating and parsing QR codes</h3>
@@ -39,10 +39,12 @@
 ### 1. Features
 
 1. Call a single api to generate and parse the QR code
-2. Support ts
-3. Analyze QR code to support parsing files, base64, url, image, video and canvas
-4. Analyze the QR code to support binding an input element of type file
-5. Generate QR code to support returning base64, image and rendering to dom element
+2. Use Promise api, support async/await
+3. Develop with typescript
+4. Analyze QR code to support parsing files, base64, url, image
+5. Support screenshots of video and canvas
+6. Analyze the QR code to support binding an input element of type file
+7. Generate QR code to support returning base64, image and rendering to dom element
 
 ### 2. Quick use
 
