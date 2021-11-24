@@ -32,7 +32,7 @@
 </p>
 <h3>🚀 Simple and easy-to-use js library for generating and parsing QR codes</h3>
 
-**[中文](https://github.com/theajack/qrcode/blob/master/README.md) | [Online use](https://www.theajack.com/qrcode) | [Update Log](https://github.com/theajack/qrcode/blob/master/helper/version.md) | [Feedback bug](https://github.com/theajack/qrcode/issues/new) | [Gitee](https://gitee.com/theajack/qrcode/)**
+**[中文](https://github.com/theajack/qrcode/blob/master/README.md) | [Online use](https://www.theajack.com/qrcode) | [Update Log](https://github.com/theajack/qrcode/blob/master/helper/version.md) | [Feedback bug](https://github.com/theajack/qrcode/issues/new) | [Gitee](https://gitee.com/theajack/qrcode/) | [JSBox Demo](https://theajack.gitee.io/jsbox?theme=dark&lang=html&lib=https://cdn.jsdelivr.net/npm/tc-qrcode/tc-qrcode.min.js&code=DwZwxgTglgDgLgAhBMBeARACznGIBcA9IWACYB2AdAFYikCmANlAG4SXn1yHkwC2hOGAC0ARxQB7BoJHiwU+pT5QqtdAD5ghcNHjqAsAChgUPgHMEUUqgDkpgIZn6NpClvZcBYmVV0mrdk5uM0xBTHp7answAGtCOQVCcMYYeghCBj4JMUkGShhyMxtCA2MAIwBXHAlyBBqwZliMBnkGAEVc+gAKAEoNABF6VvoENoAlYa1K6vJSk14qy2s7BbgXFntGCvpbAAkmRgkEAHUJCEZSAEJiuem4GrryBqgm9HonhQ7h3o0AUQ+GKMJgoplV7rMjKBILA4KUEPCEAAzCpPOBQB4tT6dXoAbyMCIJCAAKgBhL4KSiYhgAMQgEj4AEk+I5uqQJGAKnx3nBKE44L9GPQueQ4AAhACeDNIXTszKcNh6PXxhJVlDg4XIXWRqPRtS6EHoIAqjDgPQQeMMKqtCM2aTg+sNxtNAG5ldb4QBfJWWhEet1IlFgNEPd7DckMXH+gnycggRAOJwIVDEsmdSihhQAQRAovsIHoADYACxdNkc4U8vkCoXciVSmUqGBVBWUDZbeg9V0+lVlznc3lcasVuvS2Uslv5uCZnDQabdGzIMA2AA0ljlHa7BL9xm00L0QA)**
 
 ---
 
