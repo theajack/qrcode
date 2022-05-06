@@ -210,10 +210,10 @@ const base64 = encodeAsBase64({
     text:'xxx',
     width: 256, // default value 256
     height: 256, // default value 256
-    typeNumber: 4; // default value 4
-    colorDark:'#000000'; // default value'#000000'
-    colorLight:'#ffffff'; // default value'#ffffff'
-    correctLevel: 2; // default value 2
+    typeNumber: 4, // default value 4
+    colorDark:'#000000', // default value'#000000'
+    colorLight:'#ffffff', // default value'#ffffff'
+    correctLevel: 2, // default value 2
 });
 ```
 

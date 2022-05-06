@@ -212,10 +212,10 @@ const base64 = encodeAsBase64({
     text: 'xxx',
     width: 256, // 默认值 256
     height: 256, // 默认值 256
-    typeNumber: 4; // 默认值 4
-    colorDark: '#000000'; // 默认值 '#000000'
-    colorLight: '#ffffff'; // 默认值 '#ffffff'
-    correctLevel: 2; // 默认值 2
+    typeNumber: 4, // 默认值 4
+    colorDark: '#000000', // 默认值 '#000000'
+    colorLight: '#ffffff', // 默认值 '#ffffff'
+    correctLevel: 2, // 默认值 2
 });
 ```
 
