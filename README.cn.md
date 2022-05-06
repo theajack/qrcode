@@ -33,7 +33,7 @@
 
 <h3>🚀 简单好用的生成和解析二维码的js库</h3>
 
-**[英文](https://github.com/theajack/qrcode/blob/master/README.md) | [在线使用](https://www.theajack.com/qrcode) | [更新日志](https://github.com/theajack/qrcode/blob/master/helper/version.md) | [反馈](https://github.com/theajack/qrcode/issues/new) | [Gitee](https://gitee.com/theajack/qrcode/) |  [JSBox Demo](https://theajack.gitee.io/jsbox?theme=dark&lang=html&lib=https://cdn.jsdelivr.net/npm/tc-qrcode/tc-qrcode.min.js&code=DwZwxgTglgDgLgAhBMBeARACznGIBcA9IWACYB2AdAFYikCmANlAG4SXn1yHkwC2hOGAC0ARxQB7BoJHiwU+pT5QqtdAD5ghcNHjqAsAChgUPgHMEUUqgDkpgIZn6NpClvZcBYmVV0mrdk5uM0xBTHp7answAGtCOQVCcMYYeghCBj4JMUkGShhyMxtCA2MAIwBXHAlyBBqwZliMBnkGAEVc+gAKAEoNABF6VvoENoAlYa1K6vJSk14qy2s7BbgXFntGCvpbAAkmRgkEAHUJCEZSAEJiuem4GrryBqgm9HonhQ7h3o0AUQ+GKMJgoplV7rMjKBILA4KUEPCEAAzCpPOBQB4tT6dXoAbyMCIJCAAKgBhL4KSiYhgAMQgEj4AEk+I5uqQJGAKnx3nBKE44L9GPQueQ4AAhACeDNIXTszKcNh6PXxhJVlDg4XIXWRqPRtS6EHoIAqjDgPQQeMMKqtCM2aTg+sNxtNAG5ldb4QBfJWWhEet1IlFgNEPd7DckMXH+gnycggRAOJwIVDEsmdSihhQAQRAovsIHoADYACxdNkc4U8vkCoXciVSmUqGBVBWUDZbeg9V0+lVlznc3lcasVuvS2Uslv5uCZnDQabdGzIMA2AA0ljlHa7BL9xm00L0QA)**
+**[英文](https://github.com/theajack/qrcode/blob/master/README.md) | [在线使用](https://theajack.github.io/qrcode) | [更新日志](https://github.com/theajack/qrcode/blob/master/helper/version.md) | [反馈](https://github.com/theajack/qrcode/issues/new) | [Gitee](https://gitee.com/theajack/qrcode/) |  [JSBox Demo](https://theajack.github.io/jsbox?github=theajack.qrcode)**
 
 ---
 
